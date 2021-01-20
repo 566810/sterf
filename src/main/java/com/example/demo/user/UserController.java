@@ -16,6 +16,7 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<?> postUser(@RequestBody User student) throws Exception {
+        userService.addUser(student);
         return new ResponseEntity(HttpStatus.OK);
     }
 
