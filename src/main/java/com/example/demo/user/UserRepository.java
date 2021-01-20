@@ -1,2 +1,6 @@
-package com.example.demo.user;public class UserRepository {
+package com.example.demo.user;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Long> {
 }
