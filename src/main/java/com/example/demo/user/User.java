@@ -1,10 +1,14 @@
 package com.example.demo.user;
+import com.example.demo.match.Match;
 import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.List;
+
 import com.example.demo.profile.*;
+
 
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class , property = "@Id")
@@ -42,9 +46,9 @@ public class User implements Serializable {
 
 
     //list of matches
-    //@ManyToMany()
-    //@JoinColumn(name = "match_id", referencedColumnName = "id")
-    //private List<Match> matches;
+    @ManyToMany()
+    @JoinColumn(name = "match_id", referencedColumnName = "id")
+    private List<Match> matches;
 
 
 
@@ -54,7 +58,7 @@ public class User implements Serializable {
     }
     public User(){}
 
-/*    public List<Match> getMatches() {
+    public List<Match> getMatches() {
         return matches;
     }
 
@@ -64,7 +68,7 @@ public class User implements Serializable {
 
     public void addMatches(List<Match> matches){
         this.matches.addAll(matches);
-    }*/
+    }
 
 
 

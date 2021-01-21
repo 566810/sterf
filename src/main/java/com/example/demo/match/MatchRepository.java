@@ -1,6 +1,5 @@
-package blend.buddyapp.api.resources.match;
+package com.example.demo.match;
 
-import blend.buddyapp.api.resources.match.model.Match;
 import org.springframework.data.repository.CrudRepository;
 
 public interface MatchRepository extends CrudRepository<Match, Long> {

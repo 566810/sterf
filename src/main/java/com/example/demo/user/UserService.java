@@ -13,8 +13,11 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void addUser(User user) throws Exception {
+    public boolean addUser(User user) throws Exception {
+        User user2 = userRepository.findStudentByUsername(user.getStudentNumber());
+        if (user2!= null) return false;
         userRepository.save(user);
+        return true;
     }
 
     public List getUsers(Specification spec) throws Exception{
