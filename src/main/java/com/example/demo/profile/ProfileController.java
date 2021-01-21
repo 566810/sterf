@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Validated
 @RestController
-@RequestMapping("${openapi.swaggerBuddyProject.base-path:/api}")
+
 public class ProfileController {
 
     @Autowired
