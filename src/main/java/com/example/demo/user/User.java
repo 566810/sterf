@@ -1,16 +1,10 @@
 package com.example.demo.user;
-
-
-
-
-
 import com.fasterxml.jackson.annotation.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.List;
+import com.example.demo.profile.*;
 
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class , property = "@Id")
@@ -29,11 +23,14 @@ public class User implements Serializable {
     private Long userid;
 
 
-
     @NotNull
     @JsonProperty("student_number")
     @Column(name = "studentNumber")
     private String studentNumber;
+
+    @OneToOne( cascade = CascadeType.ALL, mappedBy = "user")
+    private Profile profile;
+
 
 
     @NotNull
@@ -44,18 +41,10 @@ public class User implements Serializable {
 
 
 
-/*
-    @OneToOne( cascade = CascadeType.ALL, mappedBy = "user")
-    private Profile profile;
-*/
-
-
     //list of matches
-/*
-    @ManyToMany()
+    //@ManyToMany()
     //@JoinColumn(name = "match_id", referencedColumnName = "id")
-    private List<Match> matches;
-*/
+    //private List<Match> matches;
 
 
 
@@ -93,12 +82,6 @@ public class User implements Serializable {
         this.studentNumber = studentNumber;
     }
 
-/*    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }*/
 
 
     public Long getUserid() {
@@ -111,9 +94,9 @@ public class User implements Serializable {
 
 
 
-/*
     public void setProfile(Profile profile) {
         this.profile = profile;
+
     }
 
 
@@ -122,7 +105,7 @@ public class User implements Serializable {
         return profile;
     }
 
-    @OneToMany()
+ /*   @OneToMany()
     private List<Message> messages;*/
 
 
