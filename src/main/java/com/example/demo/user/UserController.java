@@ -9,10 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,14 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsers(spec), HttpStatus.OK) ;
 
     }
+
+    @RequestMapping(value = "/users/{id}/matches/{id2}", consumes= {"application/json"}, produces ={"application/json"}, method = RequestMethod.POST)
+    public ResponseEntity<?> matchUser(@PathVariable("id") Long id, @PathVariable("id2") Long id2   ){
+        return new ResponseEntity<>(userService.addMatchFromUser(id, id2))  ;
+
+        //return new ResponseEntity("" , HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<?> postUser(@RequestBody User student) throws Exception {
