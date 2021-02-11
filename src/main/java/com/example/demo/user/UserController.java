@@ -26,13 +26,21 @@ public class UserController {
             @RequestParam(value = "lastName", required = false) String lastName,
             @RequestParam(value = "firstName", required = false) String firstName) throws Exception {
 
-        if (studentNumber != null)
-            return new ResponseEntity<User>(userService.getUserBName(studentNumber), HttpStatus.OK);
+        if (studentNumber != null){
+            User userByName  = userService.getUserBName(studentNumber);
+            if (userByName == null) return  new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            else return new ResponseEntity<User>(userByName, HttpStatus.OK);
+        }
+
+
+
 
         Specification spec = Specification
                 .where(new UserWithStudentTypeEqualTo(studentType))
                 .and(new UserHasProfileWithLastNameLike(lastName))
                 .and(new UserHasProfileWithFirstNameLike(firstName));
+
+
         return new ResponseEntity<>(userService.getUsers(spec), HttpStatus.OK) ;
 
     }
